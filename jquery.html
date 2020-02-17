@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Prova di JQuery</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			$("#p1").click(function()
+			{
+				$("#p2").show();
+				$("#p1").hide();
+			});
+
+			$("#p2").click(function()
+			{
+				$("#p1").show();
+				$("#p2").hide();
+			});
+
+			$("#pipo").click(function()
+			{
+				do
+				{
+					setTimeout(function()
+					{
+						$('#pipo').show();
+					}, 1000);
+					setTimeout(function()
+					{
+						$('#pipo').hide();
+					}, 1000);
+				}while(true);
+			});
+
+		});
+	</script>
+	
+
+	<body>
+		<span id="p1">RICOR</span>
+		<span id="p2">SIONE</span>
+		<h1 style="font-size:78px;" id="pipo">p e e p o</h1>
+	</body>
+</html>
