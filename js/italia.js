@@ -5,9 +5,20 @@ Template di JS, Nunjucks, EJS, Handlebars
 Per info: domanda di stackoverflow pianeti di SW
 */
 
+/*
+Il problema è: le funzioni richiedono come input valori numerici per essere usati nelle query sql
+Questi valori sono associati ad un nome, una stringa (noi vogliamo la stringa)
+Se però si modifica il contenuto del valore di un campo, il prossimo campo che deve utilizzare
+quel valore per eseguire una query nel db non potrà usare una stringa come il nome della provincia
+perché necessita di un indice numerico come cod_regione
+*/
+
 $(document).ready(function(){
 	$('#regione').change(function(){
+		//IL POST SI PRENDE IL VALUE, NON IL NOME
 		var elem = $(this).val();
+		$('#spanregione').append($(this).val());
+		
 		
 		//Tramite POST passo all'oggetto http una stringa 'regione'
 		//in tale modo in select.php viene chiamata la funzione getProvince
@@ -16,6 +27,8 @@ $(document).ready(function(){
 			url:'ajax/select.php',
 			dataType: 'json',
 			data: {'regione':elem},
+			//elem è il valore del codice della regione, passato tramite post
+			//alla funzione che cerca le provincie
 			success: function(res)
 			{
 				$('#provincia option').each(
@@ -34,8 +47,6 @@ $(document).ready(function(){
 				$.each(res, function(i, e)
 				{
 					$('#provincia').append('<option name="'+e.codice+'"value="' + e.codice + '">' + e.nome + '</option>');
-					$('#provincia option').each($(this).attr('name',e.nome)();
-					$('#provincia option').each($(this).attr('value',e.nome));
 					$('#spanprovincia').append(e.nome);
 				});
 			}
